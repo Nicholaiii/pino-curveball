@@ -1,6 +1,6 @@
 import { hrtime } from 'process'
 
-import { Context, Middleware, middlewareCall, Request } from '@curveball/core'
+import { Context, middlewareCall, Request } from '@curveball/core'
 import { nanoid as getId } from 'nanoid/async'
 import pino, { ChildLoggerOptions, Logger } from 'pino'
 
@@ -19,11 +19,11 @@ const globalLogger = pino()
 class PinoLogger {
   private readonly logger: Logger
 
-  constructor (options: ChildLoggerOptions = {}) {
+  constructor(options: ChildLoggerOptions = {}) {
     this.logger = makeLogger('api', options)
   }
 
-  async [middlewareCall] (ctx: Context, next: nextFn): Promise<void> {
+  async [middlewareCall](ctx: Context, next: nextFn): Promise<void> {
     const start = hrtime.bigint()
     const id = await getId()
 
@@ -52,7 +52,7 @@ class PinoLogger {
  * @param options Logger options. Refer to pino docs.
  * @returns {Middleware} Curveball middleware.
  */
-export function pinoLogger (options: ChildLoggerOptions = {}): Middleware {
+export function pinoLogger(options: ChildLoggerOptions = {}): PinoLogger {
   return new PinoLogger(options)
 }
 
@@ -69,7 +69,7 @@ export function pinoLogger (options: ChildLoggerOptions = {}): Middleware {
  * @param options Logger options. Refer to pino docs.
  * @returns {Logger}
  */
-export function makeLogger (ns: string, options: ChildLoggerOptions = {}): Logger {
+export function makeLogger(ns: string, options: ChildLoggerOptions = {}): Logger {
   return globalLogger.child({ ns }, options)
 }
 
@@ -91,7 +91,7 @@ type ResponseLog = {
   }
 }
 
-function serialiseRequest (req: Request): RequestLog {
+function serialiseRequest(req: Request): RequestLog {
   return {
     req: {
       method: req.method,
@@ -100,7 +100,7 @@ function serialiseRequest (req: Request): RequestLog {
   }
 }
 
-function serialiseResponse (ctx: Context): ResponseLog {
+function serialiseResponse(ctx: Context): ResponseLog {
   return {
     contentLength: ctx.response.headers.get('Content-Length'),
     res: {

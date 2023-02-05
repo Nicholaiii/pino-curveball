@@ -47,7 +47,6 @@
     "nanoid": "^3.3.4"
   },
   "devDependencies": {
-    "@ava/get-port": "^1.0.0",
     "@ava/typescript": "^3.0.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/node": "^18.11.19",
