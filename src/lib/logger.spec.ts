@@ -5,7 +5,6 @@ import got from 'got'
 
 import { makeLogger, pinoLogger, PinoLogger } from './logger'
 
-
 test('makeLogger', async (t) => {
   t.plan(2)
 

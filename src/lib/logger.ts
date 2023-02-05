@@ -4,7 +4,14 @@ import { Context, middlewareCall, Request } from '@curveball/core'
 import { nanoid as getId } from 'nanoid/async'
 import pino, { ChildLoggerOptions, Logger } from 'pino'
 
-type nextFn = () => Promise<void>
+/**
+ * Dummy next function type.
+ */
+export type nextFn = () => Promise<void>
+
+/**
+ * Use this for your context.
+ */
 export type LoggerContext = Context & {
   logger: Logger
   state: {
