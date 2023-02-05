@@ -3,7 +3,7 @@ import test from 'ava'
 import getPort from 'get-port'
 import got from 'got'
 
-import { makeLogger, pinoLogger } from './logger'
+import { makeLogger, pinoLogger, PinoLogger } from './logger'
 
 
 test('makeLogger', async (t) => {
@@ -42,9 +42,9 @@ test('pinoLogger', async (t) => {
 })
 
 test('PinoLogger', async (t) => {
-  t.plan(3)
+  t.plan(4)
 
-  const instance = pinoLogger({
+  const instance = new PinoLogger({
     formatters: {
       log: () => {
         t.pass()
@@ -52,6 +52,8 @@ test('PinoLogger', async (t) => {
       }
     }
   })
+
+  t.truthy(instance['logger'])
 
   const ctx = new Context(
     new MemoryRequest('POST', '/', 'localhost'),

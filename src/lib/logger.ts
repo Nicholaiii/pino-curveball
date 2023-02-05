@@ -4,8 +4,7 @@ import { Context, middlewareCall, Request } from '@curveball/core'
 import { nanoid as getId } from 'nanoid/async'
 import pino, { ChildLoggerOptions, Logger } from 'pino'
 
-
-type nextFn = () => Readonly<Promise<void>>
+type nextFn = () => Promise<void>
 export type LoggerContext = Context & {
   logger: Logger
   state: {
@@ -16,7 +15,7 @@ export type LoggerContext = Context & {
 /* Re-usable logger */
 const globalLogger = pino()
 
-class PinoLogger {
+export class PinoLogger {
   private readonly logger: Logger
 
   constructor(options: ChildLoggerOptions = {}) {
@@ -36,8 +35,10 @@ class PinoLogger {
     }, 'request')
 
     await next()
+
     const end = hrtime.bigint()
     const responseTime = `${Number(end - start) * 0.000001}ms`
+
     context.logger.info({
       responseTime,
       ...serialiseResponse(ctx),
