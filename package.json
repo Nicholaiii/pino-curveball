@@ -6,6 +6,12 @@
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
   "repository": "https://github.com/Nicholaiii/pino-curveball",
+  "homepage": "https://nicholaiii.github.io/pino-curveball",
+  "author": {
+    "name": "Nicholai Nissen",
+    "email": "nicholainissen@gmail.com",
+    "url": "https://nicholai.dev"
+  },
   "license": "MIT",
   "keywords": [],
   "scripts": {
