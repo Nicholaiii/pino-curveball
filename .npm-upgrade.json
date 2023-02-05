@@ -1,0 +1,8 @@
+{
+  "ignore": {
+    "nanoid": {
+      "versions": "4",
+      "reason": "ESM only"
+    }
+  }
+}
