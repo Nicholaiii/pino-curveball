@@ -47,9 +47,11 @@
   "engines": {
     "node": ">=10"
   },
+  "peerDependencies": {
+    "@curveball/core": "^0.21.1"
+  },
   "dependencies": {
     "@bitauth/libauth": "^1.19.1",
-    "@curveball/core": "^0.20.0",
     "@types/pino": "^7.0.5",
     "nanoid": "^3.3.4"
   },
